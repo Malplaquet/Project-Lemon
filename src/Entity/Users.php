@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
@@ -18,11 +19,13 @@ class Users
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=2, max=255, minMessage="Votre prénom doit contenir au minimum deux lettres", maxMessage="Votre prénom doit contenir au maximum 255 caractères")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=2, max=255, minMessage="Votre nom doit contenir au minimum deux lettres", maxMessage="Votre nom doit contenir au maximum 255 caractères")
      */
     private $nom;
 
@@ -33,6 +36,7 @@ class Users
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message="L'adresse mail indiquée n'est pas valide")
      */
     private $email;
 

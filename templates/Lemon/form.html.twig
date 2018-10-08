@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formInscription 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+  {% if editMode %}
+    <h1>Modifier les informations d'un utilisateur</h1>
+  {% else %}
+    <h1>Inscrivez-vous sur le site</h1>
+  {% endif %}
+
+  {{ form_start(formInscription) }}
+
+  {{ form_row(formInscription.prenom, {'attr': {'placeholder': "Prénom"}}) }}
+  {{ form_row(formInscription.nom, {'attr': {'placeholder': "Nom de famille"}}) }}
+  {{ form_row(formInscription.dateDeNaissance) }}
+  {{ form_row(formInscription.email, {'attr': {'placeholder': "Adresse email"}}) }}
+  {{ form_row(formInscription.sexe, {'attr': {'placeholder': "Sexe"}}) }}
+  {{ form_row(formInscription.pays, {'attr': {'placeholder': "Pays"}}) }}
+  {{ form_row(formInscription.metier, {'attr': {'placeholder': "Métier"}}) }}
+
+  <button type="submit" class="btn btn-secondary" name="button">
+    {% if editMode %}
+      Enregistrer les modifications
+    {% else %}
+      S'inscrire
+    {% endif %}
+  </button>
+
+  {{ form_end(formInscription) }}
+
+{% endblock %}

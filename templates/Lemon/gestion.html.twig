@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% for user in users %}
+<div class="row">
+  <div class="col-10 d-flex justify-content-around">
+    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.prenom }}</span></a>
+    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.nom }}</span></a>
+    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.sexe }}</span></a>
+    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.email }}</span></a>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

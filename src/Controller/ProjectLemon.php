@@ -15,7 +15,7 @@ use App\Entity\Users;
 class ProjectLemon extends Controller
 {
   /**
-  * @Route("/", name="inscription")
+  * @Route("/", name="index")
   * @Route("/create", name="addUser")
   * @Route ("user/{id}/edit", name="editUser")
   */
@@ -97,12 +97,12 @@ class ProjectLemon extends Controller
   }
 
   /**
-   * @Route("/connexion", name="connexion")
+   * @Route("/login", name="login")
    */
-  public function connexion()
+  public function login()
   {
     return $this->render(
-      'Lemon/connexion.html.twig'
+      'Lemon/login.html.twig'
     );
   }
 

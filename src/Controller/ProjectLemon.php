@@ -95,17 +95,7 @@ class ProjectLemon extends Controller
       ]
     );
   }
-
-  /**
-   * @Route("/login", name="login")
-   */
-  public function login()
-  {
-    return $this->render(
-      'Lemon/login.html.twig'
-    );
-  }
-
+  
   /**
    * @Route("/gestion", name="gestion")
    */

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h1>Inscription à l'espace administrateur</h1>
+
+  {{ form_start(form) }}
+  {{ form_row(form.username, {'label': 'Nom d\'utilisateur', 'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
+  {{ form_row(form.email, {'label': 'Adresse email', 'attr': {'placeholder': 'Email'}}) }}
+  {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Mot de passe'}}) }}
+
+  <button type="submit" class="btn btn-secondary" name="button">S'inscrire</button>
+
+  {{ form_end(form) }}
+{% endblock %}

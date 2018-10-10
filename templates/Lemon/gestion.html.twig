@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="row">
+  <a href="{{ path('addUser') }}"><button class="btn btn-secondary" type="button" name="button">Créer un utilisateur</button></a>
+</div>
+<div class="row">
+  
+</div>
 {% for user in users %}
 <div class="row">
   <div class="col-10 d-flex justify-content-around">

@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="row">
   <div class="col-10">
     <p class="">{{ users.prenom }}</p>
     <p class="">{{ users.nom }}</p>
@@ -10,4 +11,13 @@
     <p class="">{{ users.pays }}</p>
     <p class="">{{ users.metier }}</p>
   </div>
+  <div class="col-2">
+    <div class="row">
+      <a href="{{ path('editUser', {'id': users.id }) }}"><button type="button" class="btn btn-primary" name="button">Modifier</button></a>
+    </div>
+    <div class="row">
+      <a href=""><button type="button" class="btn btn-primary" name="button">Supprimer l'utilisateur</button></a>
+    </div>
+  </div>
+</div>
 {% endblock %}

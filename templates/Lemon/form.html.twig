@@ -5,8 +5,10 @@
 {% block body %}
   {% if editMode %}
     <h1>Modifier les informations d'un utilisateur</h1>
+  {% elseif app.user %}
+    <h1>Renseignez les informations de l'utilisateur</h1>
   {% else %}
-    <h1>Inscrivez-vous sur le site</h1>
+    <h1>Renseignez vos informations utilisateur</h1>
   {% endif %}
 
   {{ form_start(formInscription) }}
@@ -22,6 +24,8 @@
   <button type="submit" class="btn btn-secondary" name="button">
     {% if editMode %}
       Enregistrer les modifications
+    {% elseif app.user %}
+      Enregistrer
     {% else %}
       S'inscrire
     {% endif %}

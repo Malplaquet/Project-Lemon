@@ -14,9 +14,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse">
-    </div>
-    <div class="form-inline my-2 my-lg-0">
-      <a href="{{ path('login') }}"><button class="btn btn-secondary my-2 my-sm-0" type="button">Administration</button></a>
+      {% if not app.user %}
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{{ path('security_login') }}"><button class="btn btn-primary my-2 my-sm-0" type="button">Connexion</button></a>
+      </div>
+      {% else %}
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{{ path('gestion') }}"><button class="btn btn-primary my-2 my-sm-0" type="button">Administration</button></a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{{ path('security_logout') }}"><button class="btn btn-secondary my-2 my-sm-0" type="button" name="button">Deconnexion</button></a>
+      </div>
+      {% endif %}
     </div>
   </nav>
   <div class="container">

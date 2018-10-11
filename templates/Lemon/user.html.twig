@@ -1,23 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="row">
-  <div class="col-10">
-    <p class="">{{ users.prenom }}</p>
-    <p class="">{{ users.nom }}</p>
-    <p class="">{{ users.dateDeNaissance | date('d/m/Y') }}</p>
-    <p class="">{{ users.email }}</p>
-    <p class="">{{ users.sexe }}</p>
-    <p class="">{{ users.pays }}</p>
-    <p class="">{{ users.metier }}</p>
+<div class="container">
+  <div class="row">
+    <a href="{{ path('editUser', {'id': users.id }) }}"><button type="button" class="btn btn-info" name="button">Modifier</button></a>
+    <a href="{{ path('delete', {'id': users.id}) }}"><button type="button" class="btn btn-danger" name="button">Supprimer l'utilisateur</button></a>
   </div>
-  <div class="col-2">
-    <div class="row">
-      <a href="{{ path('editUser', {'id': users.id }) }}"><button type="button" class="btn btn-primary" name="button">Modifier</button></a>
-    </div>
-    <div class="row">
-      <a href=""><button type="button" class="btn btn-primary" name="button">Supprimer l'utilisateur</button></a>
-    </div>
+  <div class="row">
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th scope="col">Prénom</th>
+          <td>{{ users.prenom }}</td>
+        </tr>
+        <tr>
+          <th scope="col">Nom</th>
+          <td>{{ users.nom }}</td>
+        </tr>
+        <tr>
+          <th scope="col">Date de naissance</th>
+          <td>{{ users.dateDeNaissance | date('d/m/Y') }}</td>
+        </tr>
+        <tr>
+          <th scope="col">Email</th>
+          <td>{{ users.email }}</td>
+        </tr>
+        <tr>
+          <th scope="col">Sexe</th>
+          <td>{{ users.sexe }}</td>
+        </tr>
+        <tr>
+          <th scope="col">Pays</th>
+          <td>{{ users.pays }}</td>
+        </tr>
+        <tr>
+          <th scope="col">Métier</th>
+          <td>{{ users.metier }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <a href="{{ path('gestion') }}"><button type="button" class="btn btn-primary" name="button">Retour à l'administration</button></a>
   </div>
 </div>
 {% endblock %}

@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="row">
-  <a href="{{ path('addUser') }}"><button class="btn btn-secondary" type="button" name="button">Créer un utilisateur</button></a>
-</div>
-<div class="row">
-  
-</div>
-{% for user in users %}
-<div class="row">
-  <div class="col-10 d-flex justify-content-around">
-    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.prenom }}</span></a>
-    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.nom }}</span></a>
-    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.sexe }}</span></a>
-    <a href="{{ path('user', {'id': user.id }) }}"><span class="">{{ user.email }}</span></a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-2">
+      <a href="{{ path('addUser') }}"><button class="btn btn-success" type="button" name="button">Créer un utilisateur</button></a>
+    </div>
+    <div class="col-xl-10">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Adresse email</th>
+            <th scope="col">Pays</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.pays }}</td>
+            <td><a href="{{ path('user', {'id': user.id}) }}"><button type="button" class="btn btn-outline-success">Voir</button></a></td>
+            <td><a href="{{ path('editUser', {'id': user.id}) }}"><button type="button" class="btn btn-outline-info">Modifier</button></a></td>
+            <td><a href="{{ path('delete', {'id': user.id}) }}"><button type="button" class="btn btn-outline-danger">Supprimer</button></a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
-{% endfor %}
 {% endblock %}

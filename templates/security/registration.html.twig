@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
   <h1>Inscription à l'espace administrateur</h1>
 
   {{ form_start(form) }}
@@ -11,4 +12,5 @@
   <button type="submit" class="btn btn-secondary" name="button">S'inscrire</button>
 
   {{ form_end(form) }}
+</div>
 {% endblock %}

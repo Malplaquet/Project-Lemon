@@ -95,7 +95,7 @@ class ProjectLemon extends Controller
       ]
     );
   }
-  
+
   /**
    * @Route("/gestion", name="gestion")
    */
@@ -105,7 +105,7 @@ class ProjectLemon extends Controller
     $repo = $this->getDoctrine()->getRepository(Users::class);
 
     // demande au repo d'aller cherche les users correspondant au pays sélectionné
-    $users = $repo->findByPays("France");
+    $users = $repo->findAll();
 
     return $this->render(
       'Lemon/gestion.html.twig', [
@@ -127,6 +127,25 @@ class ProjectLemon extends Controller
 
     return $this->render(
       'Lemon/user.html.twig', [
+        'users' => $users
+      ]
+    );
+  }
+
+  /**
+   * @Route("/delete/{id}", name="delete")
+   */
+  public function delete($id, ObjectManager $manager)
+  {
+    $repo = $this->getDoctrine()->getRepository(Users::class);
+
+    $users = $repo->find($id);
+
+    $manager->remove($users);
+    $manager->flush($users);
+
+    return $this->render(
+      'Lemon/delete.html.twig', [
         'users' => $users
       ]
     );

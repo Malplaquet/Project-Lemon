@@ -2,10 +2,12 @@
 
 {% block body %}
 <div class="container">
+  <br />
   <div class="row">
     <a href="{{ path('editUser', {'id': users.id }) }}"><button type="button" class="btn btn-info" name="button">Modifier</button></a>
     <a href="{{ path('delete', {'id': users.id}) }}"><button type="button" class="btn btn-danger" name="button">Supprimer l'utilisateur</button></a>
   </div>
+  <br />
   <div class="row">
     <table class="table table-hover">
       <tbody>

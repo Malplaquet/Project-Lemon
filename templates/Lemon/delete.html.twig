@@ -2,6 +2,13 @@
 
 {% block body %}
 <div class="container">
-  <h1>L'utilisateur a bien été supprimé, vous pouvez retourner au panneau d'administration.</h1>
+  <br />
+  <div class="row">
+    <h3>L'utilisateur a bien été supprimé, vous pouvez retourner au panneau d'administration.</h3>
+  </div>
+  <br />
+  <div class="row">
+    <a href="{{ path('gestion') }}"><button type="button" class="btn btn-primary" name="button">Retour à l'administration</button></a>
+  </div>
 </div>
 {% endblock %}

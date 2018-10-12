@@ -3,35 +3,35 @@
 
 {% block body %}
 <div class="container">
-{% if editMode %}
-<h1>Modifier les informations d'un utilisateur</h1>
-{% elseif app.user %}
-<h1>Renseignez les informations de l'utilisateur</h1>
-{% else %}
-<h1>Renseignez vos informations utilisateur</h1>
-{% endif %}
-
-{{ form_start(formInscription) }}
-
-{{ form_row(formInscription.prenom, {'attr': {'placeholder': "Prénom"}}) }}
-{{ form_row(formInscription.nom, {'attr': {'placeholder': "Nom de famille"}}) }}
-{{ form_row(formInscription.dateDeNaissance) }}
-{{ form_row(formInscription.email, {'attr': {'placeholder': "Adresse email"}}) }}
-{{ form_row(formInscription.sexe, {'attr': {'placeholder': "Sexe"}}) }}
-{{ form_row(formInscription.pays, {'attr': {'placeholder': "Pays"}}) }}
-{{ form_row(formInscription.metier, {'attr': {'placeholder': "Métier"}}) }}
-
-<button type="submit" class="btn btn-success" name="button">
+  <br />
   {% if editMode %}
-  Enregistrer les modifications
+  <h1>Modifier les informations d'un utilisateur</h1>
   {% elseif app.user %}
-  Enregistrer
+  <h1>Renseignez les informations de l'utilisateur</h1>
   {% else %}
-  S'inscrire
+  <h1>Renseignez vos informations utilisateur</h1>
   {% endif %}
-</button>
+  <br />
+  {{ form_start(formInscription) }}
 
-{{ form_end(formInscription) }}
+  {{ form_row(formInscription.prenom, {'label': 'Prénom', 'attr': {'placeholder': "Prénom"}}) }}
+  {{ form_row(formInscription.nom, {'label': 'Nom', 'attr': {'placeholder': "Nom de famille"}}) }}
+  {{ form_row(formInscription.dateDeNaissance) }}
+  {{ form_row(formInscription.email, {'attr': {'placeholder': "Adresse email"}}) }}
+  {{ form_row(formInscription.sexe) }}
+  {{ form_row(formInscription.pays) }}
+  {{ form_row(formInscription.metier, {'label': 'Métier', 'attr': {'placeholder': "Métier"}}) }}
 
+  <button type="submit" class="btn btn-success" name="button">
+    {% if editMode %}
+    Enregistrer les modifications
+    {% elseif app.user %}
+    Enregistrer
+    {% else %}
+    S'inscrire
+    {% endif %}
+  </button>
+
+  {{ form_end(formInscription) }}
 </div>
 {% endblock %}

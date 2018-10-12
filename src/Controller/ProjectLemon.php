@@ -85,6 +85,38 @@ class ProjectLemon extends Controller
 
     if($form->isSubmitted() && $form->isValid()) {
       $manager->persist($users);
+
+      $emailAdmin = 'boufflers.pierre@narramus.fr';
+
+      $firstname = $users->getPrenom();
+      $name = $users->getNom();
+      $birthdate = $users->getDateDeNaissance();
+      $email = $users->getEmail();
+      $sex = $users->getSexe();
+      $country = $users->getPays();
+      $job = $users->getMetier();
+
+      $message = (new \Swift_Message)
+          ->setSubject('Confirmation de votre inscription')
+          ->setFrom('test.lemon.pierre@gmail.com', 'ProjectLemon')
+          ->setTo($email)
+          ->setBcc($emailAdmin)
+          ->setBody(
+            $this->renderView('emails/validation.html.twig', array(
+                'firstname' => $firstname,
+                'name' => $name,
+                'birthdate' => $birthdate,
+                'email' => $email,
+                'sex' => $sex,
+                'country' => $country,
+                'job' => $job
+            )
+          ),
+          'text/html'
+        );
+
+        $this->get('mailer')->send($message);
+
       $manager->flush();
     }
 

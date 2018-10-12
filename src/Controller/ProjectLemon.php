@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Users;
+use GeoIp2\Database\Reader;
 
 class ProjectLemon extends Controller
 {
@@ -26,26 +27,27 @@ class ProjectLemon extends Controller
       $users = new Users();
     }
 
-    // on prérempli le contenu du formulaire avec le pays récupéré par géolocalisation
-    // $users->setPays( ICI VIENNENT LES DONNEES POUR RECUPERER LA GEOLOCALISATION )
-
     // on créé un formulaire à partir de la fonction createFormBuilder qui ajoutera les informations voulues ici ajoutées par les add(), au sein de la variable users. Le getForm(); final permet de créer une formulaire dont les informations demandées ont été signifiées par les add()
     $form = $this->createFormBuilder($users)
                  ->add('prenom')
                  ->add('nom')
                  ->add('dateDeNaissance', BirthdayType::class, [
-                   'format' => 'dd-MM-yyyy'
+                   'widget' => 'single_text'
                  ])
                  ->add('email', EmailType::class)
                  ->add('sexe', ChoiceType::class, [
+                   'placeholder' => 'Choisissez votre sexe',
                    'choices' => [
                      'Femme' => 'Femme',
                      'Homme' => 'Homme',
                      'Non défini' => 'Non défini'
                    ]
                  ])
-                 ->add('pays', CountryType::class)
+                 ->add('pays', CountryType::class, [
+                    'placeholder' => 'Sélectionnez votre pays'
+                 ])
                  ->add('metier', ChoiceType::class, [
+                   'placeholder' => 'Choisissez votre profession',
                    'choices' => [ // données recueillies sur le site de l'INSEE et adaptées
                       'Agent de maîtrise' => 'Agent de maîtrise',
                       'Agent de surveillance' => 'Agent de surveillance',
@@ -137,7 +139,7 @@ class ProjectLemon extends Controller
     $repo = $this->getDoctrine()->getRepository(Users::class);
 
     // demande au repo d'aller cherche les users correspondant au pays sélectionné
-    $users = $repo->findAll();
+    $users = $repo->findBy([], ['pays' => 'ASC']);
 
     return $this->render(
       'Lemon/gestion.html.twig', [
